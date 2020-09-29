@@ -13,6 +13,10 @@ export class Course {
     name: string
 
     @ApiProperty({description: '封面图'})
+    @prop()
+    cover: string
+
+    @ApiProperty({description: '课时'})
     @prop({ref: () => Episode})
-    episodes: Ref<Episode>[]
+    public episode: Ref<Episode>[]
 }

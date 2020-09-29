@@ -5,7 +5,7 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 async function bootstrap() {
   const port = 3000;
   const app = await NestFactory.create(AppModule);
-
+  app.enableCors()
   const options = new DocumentBuilder()
     .setTitle('视频网站api界面')
     .setDescription('The cats API description')

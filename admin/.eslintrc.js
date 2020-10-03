@@ -13,7 +13,8 @@ module.exports = {
   },
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    quotes: 'off',
-    semi: 'off'
+    'quotes': 'off',
+    'semi': 'off',
+    'vue/no-parsing-error': 'off'
   }
 }

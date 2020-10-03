@@ -1,12 +1,20 @@
 <template>
   <div class="home">
     <h3>课程列表</h3>
+    <el-button type="primary" size="default" @click="$router.push(`/courses/create`)">创建课程</el-button>
     <el-table :data="data" border stripe>
         <el-table-column v-for="(field, name) in fields"
             :prop="name"
             :key="name"
             :label="field.label"
             :width="field.width">
+        </el-table-column>
+        <el-table-column label='操作'
+          width="200">
+          <template v-slot="{row}">
+            <el-button type="primary" size="small" @click="$router.push(`/courses/edit/${row._id}`)">编辑</el-button>
+            <el-button type="danger" size="small" @click="handleDelete(row._id)">删除</el-button>
+          </template>
         </el-table-column>
     </el-table>
   </div>
@@ -29,6 +37,18 @@ export default class CourseList extends Vue {
   async fetch () {
     const res = await this.$http.get('/courses')
     this.data = res.data.data
+  }
+
+  async handleDelete (id: string) {
+    try {
+      await this.$confirm('是否确认删除？')
+    } catch (e) {
+      console.log(e, 'e')
+      return
+    }
+    await this.$http.delete(`/courses/${id}`)
+    this.$message.success('删除成功')
+    this.fetch()
   }
 
   created () {

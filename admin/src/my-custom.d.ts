@@ -2,6 +2,8 @@ import { AxiosInstance } from 'axios';
 import Vue from 'vue'
 declare module 'vue/types/vue' {
     interface Vue {
-        $http: AxiosInstance
+        $http: AxiosInstance,
+        $message: any,
+        $confirm: any
       }
 }

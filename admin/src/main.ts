@@ -9,9 +9,12 @@ import EleForm from 'vue-ele-form'
 
 Vue.use(EleForm)
 Vue.config.productionTip = false
-Vue.prototype.$http = Axios.create({
+const http = Axios.create({
   baseURL: 'http://localhost:3000'
 })
+Vue.prototype.$http = http
+Vue.prototype.$httpajax = http
+
 new Vue({
   router,
   store,

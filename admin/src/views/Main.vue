@@ -2,6 +2,9 @@
   <el-container>
       <el-aside width="200px">
         <el-menu style="height:100vh" mode="vertical" :default-active="$route.path" router>
+          <el-menu-item index="/">
+            <span slot="title">首页</span>
+          </el-menu-item>
           <el-submenu
             v-for="(item, index) in menu.items"
             :index="`menu-item-${index }`"
@@ -40,12 +43,6 @@ import { Component, Vue } from "vue-property-decorator";
 export default class Main extends Vue {
   menu = {
     items: [
-      {
-        title: "首页",
-        items: [
-          { title: "课程管理", path: "/courses/list" }
-        ]
-      },
       {
         title: "内容管理",
         items: [

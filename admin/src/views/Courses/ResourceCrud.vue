@@ -12,6 +12,7 @@
       @sort-change="changeSort"
       @search-change="searchChange"
       :upload-before="uploadBefore"
+      v-model="obj"
     >
     </avue-crud>
   </div>
@@ -27,6 +28,7 @@ export default class CourseList extends Vue {
   @Prop(String) resource!: string;
   data = [];
   option = {};
+  obj = { cover: '' };
   page = {
     pageSize: 2,
     pageSizes: [2, 5, 10],
@@ -52,18 +54,15 @@ export default class CourseList extends Vue {
     params.append('file', file)
     const res: any = await this.$http.post('upload', params, {
       headers: { 'Content-Type': 'multipart/form-data;charset=UTF-8' }
-    }).catch((e) => {
-      console.log({ e }, 'e')
-    }).finally(() => {
-      done()
     })
-    console.log(res)
-    console.log(res.data.url, 'datadatadata')
+    if (res && res.data.url) {
+      console.log(res, 'res')
+      this.obj.cover = res.data.url
+      done()
+    }
   }
 
   async changePage ({ pageSize, currentPage }: any) {
-    console.log(pageSize, 'pageSize')
-    console.log(currentPage, 'currentPage')
     this.query.page = currentPage
     this.query.limit = pageSize
     this.fetch()

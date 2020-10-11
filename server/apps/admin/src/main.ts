@@ -4,12 +4,13 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { NestExpressApplication } from '@nestjs/platform-express';
 
 async function bootstrap() {
-  const port = 3000;
+  const port = process.env.ADMIN_PORT || 3001;
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   app.enableCors()
   app.useStaticAssets('uploads', {
     prefix: '/uploads'
   })
+  
   const options = new DocumentBuilder()
     .setTitle('视频网站api界面')
     .setDescription('The cats API description')
@@ -18,6 +19,8 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('api-docs', app, document);
+
+
   await app.listen(port);
 
   console.log(`http://localhost:${port}/api-docs`)

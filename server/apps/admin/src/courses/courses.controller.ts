@@ -14,15 +14,17 @@ import { ReturnModelType } from '@typegoose/typegoose';
 @ApiTags('课程模块')
 export class CoursesController {
     constructor(@InjectModel(Course) private readonly model: ReturnModelType<typeof Course>
-    ) {}
+    ) { }
     @Get('option')
-    option (){
+    option() {
         return {
             title: '表格的标题',
             index: true,
-            indexLabel:'序号',
-            // column: [{ label: "ID", prop: '_id' }, { label: "课程名称", prop: 'name' }, { label: "课程封面图", prop: 'cover' }, { label: '创建日期', prop: 'createdAt', format: "yyyy-MM-dd" }],
-            column: [{ label: "课程名称", prop: 'name', sortable: true, search: true, regex: true, row: true }, { label: "课程封面图", prop: 'cover',type: 'upload',width: 120, listType: 'picture-img', action: '/upload' }]
-          }
+            indexLabel: '序号',
+            column: [
+                { label: "课程名称", prop: 'name', sortable: true, search: true, regex: true, row: true },
+                { label: "课程封面图", prop: 'cover', type: 'upload', width: 120, listType: 'picture-img', action: '/upload' }
+            ]
+        }
     }
 }

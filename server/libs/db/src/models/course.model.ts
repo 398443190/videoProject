@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { modelOptions, prop, Ref } from '@typegoose/typegoose'
-import { Episode } from './episode.model'
+//import { Episode } from './episode.model'
 
 @modelOptions({
     schemaOptions: {
@@ -16,7 +16,7 @@ export class Course {
     @prop()
     cover: string
 
-    @ApiProperty({description: '课时'})
-    @prop({ref: () => Episode})
-    public episode: Ref<Episode>[]
+    // @ApiProperty({description: '课时'})
+    // @prop({ref: () => Episode})
+    // public episode: Ref<Episode>[]
 }

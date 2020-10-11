@@ -28,7 +28,7 @@ export default class CourseList extends Vue {
   @Prop(String) resource!: string;
   data = [];
   option = {};
-  obj = { cover: '' };
+  obj = { cover: '', file: '' };
   page = {
     pageSize: 2,
     pageSizes: [2, 5, 10],
@@ -48,7 +48,7 @@ export default class CourseList extends Vue {
     this.page.total = res.data.total
   }
 
-  async uploadBefore (file: any, done: any) {
+  async uploadBefore (file: any, done) {
     console.log(file, 'file')
     const params = new FormData()
     params.append('file', file)
@@ -56,8 +56,8 @@ export default class CourseList extends Vue {
       headers: { 'Content-Type': 'multipart/form-data;charset=UTF-8' }
     })
     if (res && res.data.url) {
-      console.log(res, 'res')
       this.obj.cover = res.data.url
+      this.obj.file = res.data.url
       done()
     }
   }

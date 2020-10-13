@@ -1,10 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { modelOptions, prop, Ref } from '@typegoose/typegoose'
-//import { Episode } from './episode.model'
+import { modelOptions, prop } from '@typegoose/typegoose'
 
 @modelOptions({
     schemaOptions: {
-        timestamps: true
+        timestamps: true,
+        toJSON: {virtuals: true}
     }
 })
 export class Course {
@@ -16,7 +16,11 @@ export class Course {
     @prop()
     cover: string
 
-    // @ApiProperty({description: '课时'})
-    // @prop({ref: () => Episode})
-    // public episode: Ref<Episode>[]
+
+    @prop({
+        ref: 'Episode',
+        localField: '_id',
+        foreignField: 'course'
+    })
+    public episodes: [string]
 }

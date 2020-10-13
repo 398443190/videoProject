@@ -24,6 +24,7 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
+
     <v-app-bar :clipped-left="clipped" fixed app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-btn icon @click.stop="miniVariant = !miniVariant">
@@ -71,20 +72,25 @@ export default {
       fixed: false,
       items: [
         {
-          icon: 'mdi-apps',
-          title: '热门课程',
+          icon: 'home',
+          title: '首页',
           to: '/',
         },
         {
+          icon: 'mdi-apps',
+          title: '热门课程',
+          to: '/courses',
+        },
+        {
           icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire',
+          title: '热门评论',
+          to: '/comments',
         },
       ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Vuetify.js',
+      title: 'a lu 视频网站',
     }
   },
 }

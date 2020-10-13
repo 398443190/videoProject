@@ -18,5 +18,5 @@ export class Episode {
 
     @ApiProperty({description: '所属课程'})
     @prop({ref: () => 'Course'})
-    public course: Ref<Course>
+    public course: string
 }

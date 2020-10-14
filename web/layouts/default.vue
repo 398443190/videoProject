@@ -23,6 +23,14 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
+
+
+        <v-list-item class="mt-4">
+          <v-list-item-action>
+            <v-icon>home</v-icon>
+          </v-list-item-action>
+            <v-list-item-title>登录</v-list-item-title>
+        </v-list-item>
     </v-navigation-drawer>
 
     <v-app-bar :clipped-left="clipped" fixed app>
@@ -57,6 +65,17 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
+
+    <v-bottom-sheet inset v-model="isShowLoginForm">
+      <v-form @submit.prevent="login">
+        <v-text-field v-model="loginModel.username" label="用户名">
+        </v-text-field>
+        <v-text-field v-model="loginModel.password" label="密码">
+        </v-text-field>
+        <v-btn color="success" type="submit">登陆</v-btn>
+      </v-form>
+    </v-bottom-sheet>
+
     <v-footer :absolute="!fixed" app>
       <span>&copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
@@ -67,6 +86,8 @@
 export default {
   data() {
     return {
+      loginModel: {},
+      isShowLoginForm: true,
       clipped: false,
       drawer: false,
       fixed: false,
@@ -91,6 +112,11 @@ export default {
       right: true,
       rightDrawer: false,
       title: 'a lu 视频网站',
+    }
+  },
+  methods: {
+    login() {
+      console.log(111)
     }
   },
 }

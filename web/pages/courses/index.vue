@@ -3,18 +3,17 @@
     <h3 class="">热门课程</h3>
     <v-row class="">
       <v-col v-for="item in courses" :key="item._id" md="3">
-        <v-card class="mx-auto" max-width="344" 
-          :to="`courses/${item._id}`">
-          <v-img
-            :src="item.cover"
-            height="200px"
-          ></v-img>
+        <v-card class="mx-auto" max-width="344">
+          <router-link :to="`courses/${item._id}`">
+            <v-img :src="item.cover" height="200px"></v-img>
 
-          <v-card-title>{{item.name}}</v-card-title>
+            <v-card-title>{{ item.name }}</v-card-title>
+          </router-link>
 
-          <v-card-subtitle> {{item.createAt}} </v-card-subtitle>
+          <v-card-subtitle> {{ item.createAt }} </v-card-subtitle>
 
           <v-card-actions>
+            <like-btn name="LIKE" type="Course" :object="item._id"></like-btn>
             <v-btn color="orange lighten-2" text> Explore </v-btn>
 
             <v-spacer></v-spacer>
@@ -47,18 +46,21 @@
 </template>
 
 <script>
+import LikeBtn from '../../components/LikeBtn.vue'
 export default {
-  components: {},
-  data () {
-      return {
-          show: false
-      }
+  components: {
+    LikeBtn,
   },
-  async asyncData({$axios}) {
-      const data = await $axios.$get('courses')
-      return {
-          courses: data.data
-      }
+  data() {
+    return {
+      show: false,
+    }
+  },
+  async asyncData({ $axios }) {
+    const data = await $axios.$get('courses')
+    return {
+      courses: data.data,
+    }
   },
 }
 </script>

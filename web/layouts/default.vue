@@ -24,13 +24,13 @@
         </v-list-item>
       </v-list>
 
-
-        <v-list-item class="mt-4">
-          <v-list-item-action>
-            <v-icon>home</v-icon>
-          </v-list-item-action>
-            <v-list-item-title>登录</v-list-item-title>
-        </v-list-item>
+      <v-list-item class="mt-4" @click="isShowLoginForm = true">
+        <v-list-item-action>
+          <v-icon>mdi-lock</v-icon>
+        </v-list-item-action>
+        <v-list-item-title v-if="$store.state.auth.user.username">{{$store.state.auth.user.username}}</v-list-item-title>
+        <v-list-item-title v-else>登陆</v-list-item-title>
+      </v-list-item>
     </v-navigation-drawer>
 
     <v-app-bar :clipped-left="clipped" fixed app>
@@ -46,7 +46,22 @@
       </v-btn>
       <v-toolbar-title v-text="title" />
       <v-spacer />
-      <v-btn icon @click.stop="rightDrawer = !rightDrawer">
+      <v-row align="center" style="max-width: 30vw">
+        <v-text-field
+          rounded
+          filled
+          placeholder="搜索。。。"
+          single-line
+          size="small"
+          append-icon="search"
+          color="white"
+          hide-details
+        >
+        </v-text-field
+      ></v-row>
+      <v-spacer />
+      <v-switch v-model="$vuetify.theme.dark" hide-details></v-switch>
+      <v-btn icon @click.stop="rightDrawer = !rghtDrawer">
         <v-icon>mdi-menu</v-icon>
       </v-btn>
     </v-app-bar>
@@ -87,7 +102,7 @@ export default {
   data() {
     return {
       loginModel: {},
-      isShowLoginForm: true,
+      isShowLoginForm: false,
       clipped: false,
       drawer: false,
       fixed: false,
@@ -115,9 +130,14 @@ export default {
     }
   },
   methods: {
-    login() {
-      console.log(111)
-    }
+    async login() {
+      console.log(this.loginModel, 'loginModelloginModel')
+      await this.$auth.loginWith('local', {
+        data: this.loginModel
+      })
+      console.log('登陆成功')
+      this.isShowLoginForm = false
+    },
   },
 }
 </script>

@@ -24,12 +24,19 @@
         </v-list-item>
       </v-list>
 
-      <v-list-item class="mt-4" @click="isShowLoginForm = true">
+      <v-list-item v-if="$store.state.auth.user" class="mt-4" @click="isShowLoginForm = true">
         <v-list-item-action>
           <v-icon>mdi-lock</v-icon>
         </v-list-item-action>
-        <v-list-item-title v-if="$store.state.auth.user.username">{{$store.state.auth.user.username}}</v-list-item-title>
-        <v-list-item-title v-else>登陆</v-list-item-title>
+        <v-list-item-title>{{$store.state.auth.user.username}}</v-list-item-title>
+      </v-list-item>
+
+
+      <v-list-item v-else class="mt-4" @click="isShowLoginForm = true">
+        <v-list-item-action>
+          <v-icon>mdi-lock</v-icon>
+        </v-list-item-action>
+        <v-list-item-title>登陆</v-list-item-title>
       </v-list-item>
     </v-navigation-drawer>
 

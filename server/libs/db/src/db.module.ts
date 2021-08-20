@@ -15,8 +15,7 @@ const models = TypegooseModule.forFeature([User, Course, Episode, Action, Commen
     TypegooseModule.forRootAsync({
       useFactory() {
         return {
-          // uri: 'mongodb://localhost:27017/videoProject',
-          uri: process.env.DB,
+          uri:`${process.env.DB}/videoProject`,
           useNewUrlParser: true,
           useUnifiedTopology: true,
           useCreateIndex:true,

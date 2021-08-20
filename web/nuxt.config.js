@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import colors from 'vuetify/es5/util/colors'
 import dotenv from 'dotenv'
 dotenv.config()
@@ -13,15 +14,15 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Material+Icons' }
-  ],
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Material+Icons' },
+    ],
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: [],
+  plugins: ['~/plugins/axios'],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
@@ -42,7 +43,8 @@ export default {
     '@nuxtjs/pwa',
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
-    '@nuxtjs/auth'
+    '@nuxtjs/auth',
+    '@nuxtjs/dotenv',
   ],
   auth: {
     strategies: {
@@ -50,10 +52,10 @@ export default {
         endpoints: {
           login: { url: '/auth/login' },
           logout: { url: '/auth/logout' },
-          user: { url: '/auth/user', propertyName: false }
+          user: { url: '/auth/user', propertyName: false },
         },
-      }
-    }
+      },
+    },
   },
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {},
@@ -65,7 +67,7 @@ export default {
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     theme: {
-      dark: true,
+      dark: false,
       themes: {
         dark: {
           primary: colors.blue.darken2,

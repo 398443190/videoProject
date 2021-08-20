@@ -24,23 +24,23 @@ export default class ResourceList extends Vue {
   }
 
   async fetch () {
-    const res = await this.$http.get(`/courses/${this.id}`)
+    const res = await (this as any).$http.get(`/courses/${this.id}`)
     console.log(res, 'res')
     console.log(res.data, 'res.data')
     this.formData = res.data
   }
 
   created () {
-    this.isEdit && this.fetch();
+    this.isEdit && this.fetch()
   }
 
   async submit (value: any) {
     const url = this.isEdit ? `courses/${this.id}` : `courses`
     const method = this.isEdit ? 'put' : 'post'
-    await this.$http[method](url, value)
-    this.$message.success('保存成功')
-    this.formData = {}
-    this.$router.go(-1)
+    await (this as any).$http[method](url, value)
+    (this as any).$message.success('保存成功')
+    this.formData = {} as any
+    (this as any).$router.go(-1)
   }
 }
 </script>

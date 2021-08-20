@@ -33,7 +33,7 @@ export default class CourseList extends Vue {
     name: { label: '课程名称' },
     cover: { label: '课程封面图' }
   }
-
+  
   async fetch () {
     const res = await this.$http.get('/courses')
     this.data = res.data.data

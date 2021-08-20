@@ -9,8 +9,8 @@ async function bootstrap() {
   app.enableCors()
 
   const options = new DocumentBuilder()
-    .setTitle('server视频网站api界面')
-    .setDescription('server The cats API description')
+    .setTitle('server前段视频网站api界面')
+    .setDescription('主要用于前端页面使用')
     .setVersion('1.0')
     .addTag('cats')
     .addBearerAuth()

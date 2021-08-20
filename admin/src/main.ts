@@ -13,7 +13,7 @@ const http = Axios.create({
   baseURL: process.env.VUE_APP_API_URL
 })
 Vue.prototype.$http = http
-Vue.prototype.$httpajax = http
+// Vue.prototype.$httpajax = http
 
 new Vue({
   router,

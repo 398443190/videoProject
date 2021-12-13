@@ -21,17 +21,23 @@ export default function ({ $axios, redirect }) {
         console.log('请求失败')
         return
       }
+      if(response.data.statusCode === 401) {
+        console.log(response.data.message, 'messagemessagemessage')
+        return
+      }
       console.log(response)
       return response
     },
     (err) => {
+      debugger
       if (err && err.response) {
         switch (err.response.status) {
           case 400:
             err.message = '请求错误(400)'
             break
           case 401:
-            return history.push('/login')
+            console.log(err.response.data.message, 'messagemessagemessage')
+            // return history.push('/login')
             break
           case 403:
             err.message = '拒绝访问(403)'
